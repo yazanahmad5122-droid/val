@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💌</title>
+<style>
+body{
+margin:0;
+font-family:'Comic Sans MS', cursive;
+background:linear-gradient(135deg,#ffd6e7,#ffeef5);
+overflow-x:hidden;
+text-align:center;
+color:#444;
+}
+
+/* general */
+.hidden{display:none}
+section{padding:40px}
+button{
+padding:12px 22px;
+border:none;
+border-radius:20px;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+/* first screen */
+#startScreen{
+height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+}
+
+.bunny{
+font-size:80px;
+animation:float 2s infinite ease-in-out;
+}
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
+}
+
+#btnContainer{
+  position: relative;
+  display: inline-block;
+  justify-content: center;
+  gap: 20px; 
+  margin-top: 20px;
+  
+
+}
+
+#yesBtn{
+  background:#ff7aa8;
+  color:white;
+  font-weight:bold;
+  position: relative; 
+  right: 50%;
+  z-index: 2; 
+  transition: transform 0.3s;
+  margin: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+#noBtn{
+  background:#ccc;
+  position: absolute; 
+  top: 0;
+  left: 50%;
+  z-index: 1; 
+  transition: transform 0.3s ease;
+  margin: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+#noBtn:hover {
+    transform: scale(1.1);
+    background: #ff4c91;
+    color: white;
+}
+
+/* main */
+nav {
+    background: rgba(255, 255, 255, 0.95); 
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px; 
+    z-index: 100;
+}
+
+.card button {
+    background: #ff7aa8;          
+    color: white;
+    font-size: 16px;
+    padding: 10px 25px;
+    margin: 10px 0;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card button:hover {
+    transform: scale(1.05);       
+    background: #ff4c91;         
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+nav button {
+    background: #ffd1e6;
+    color: #444;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+nav button:hover {
+    transform: scale(1.1);
+    background: #ff7aa8;
+    color: white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.card{
+background:white;
+margin:20px auto;
+padding:30px;
+border-radius:25px;
+max-width:700px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* timeline */
+.timeline{
+text-align:left;
+}
+
+.timeline div{
+margin:15px 0;
+padding-left:15px;
+border-left:4px solid pink;
+position: relative;
+}
+
+.corner-bunny {
+    position: fixed; 
+    width: 100px;    
+    height: auto;
+    z-index: 50;      
+    pointer-events: none; 
+    animation: float 3s infinite ease-in-out;
+}
+
+.top-left {
+    top: 100px;
+    left: 20px;
+}
+
+.top-right {
+    top: 20px;
+    right: 20px;
+}
+
+.bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+.bottom-right {
+    bottom: 20px;
+    right: 20px;
+}
+
+/* Floating */
+@keyframes float {
+    0%,100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+
+
+/* quiz */
+.quiz button{
+display:block;
+margin:10px auto;
+}
+
+
+/* letter */
+#letterBox{
+font-size:20px;
+min-height:120px;
+white-space:pre-wrap;
+}
+
+.quiz button.correct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.quiz button.wrong {
+    background-color: #FF4C4C;
+    color: white;
+}
+
+.card button:active {
+    transform: scale(0.95);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+
+
+#randMsg {
+    font-size: 22px;      
+    line-height: 1.5;     
+    font-weight: 500;     
+    margin-top: 15px;
+    color: #ff4c91;       
+    text-align: center;
+    transition: all 0.3s ease; 
+}
+
+#countdown .card h2 {
+    font-size: 26px;
+    color: #ff4c91;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#countdown .card p {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#timer {
+    font-size: 28px;         
+    font-weight: bold;
+    color: #ff7aa8;           
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 20px;
+    background: #fff0f6;     
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease; 
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- FIRST SCREEN -->
+<div id="startScreen">
+<div class="bunny">
+  <img src="https://64.media.tumblr.com/8cfd88454315f66092d3cd2ad9a5a399/tumblr_pmxyssUBTt1ubqheso1_640.gif" 
+       alt="Bunny" 
+       style="width:350px; height:auto;">
+</div>
+<h1>Will you be my Valentine?</h1>
+<div id="btnContainer" style="position:relative; display:inline-block;">
+<button id="yesBtn">Yes 💖</button>
+<button id="noBtn">No</button>
+</div>
+</div>
+
+<!-- MAIN SITE -->
+
+
+	 
+<div id="mainSite" class="hidden">
+
+<div id="celebration" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:9999;"></div>
+
+<img src="https://media.tenor.com/NMXTpg9c8b4AAAAj/bunny-love.gif" 
+     class="corner-bunny top-left">
+
+<img src="https://i.pinimg.com/originals/51/04/43/51044308bbd09742b8f5e029971dab21.gif" 
+     class="corner-bunny bottom-right">
+	 
+<nav>
+<button onclick="show('story')">قصة</button>
+<button onclick="show('quiz')">لعبة</button>
+<button onclick="show('MSG')">رسائل</button>
+<button onclick="show('countdown')">مؤقت</button>
+
+</nav>
+
+<!-- STORY -->
+<section id="story" class="section">
+<div class="card">
+<h2>Our Story 🌙</h2>
+
+<div class="timeline">
+<div>✨ First chat — 2025/4/6</div>
+<div>☀️ First "good morning" — 2025/5/14</div>
+<div>🌙 First "good night" — 2025/6/26</div>
+<div>💌 First confession — 2025/12/26</div>
+<div>🎧 First playlist togther — 2025/12/28</div>
+<div>📺 First thing we watched together — 2025/1/11</div>
+<div>🌸 First call — 2026/1/13</div>
+<div>🖼 First matching PFP — 2026/1/15</div>
+<div>🎮 First game together — 2026/2/10</div>
+</div>
+
+<h3>Days together:</h3>
+<div id="daysCount"></div>
+</div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="section hidden">
+<div class="card quiz">
+<h2>Love Quiz 💞</h2>
+<p id="qText"></p>
+<div id="answers"></div>
+<p id="result"></p>
+</div>
+</section>
+
+<!-- Love MSG -->
+<section id="MSG" class="section hidden">
+<div class="card">
+<h2> 💌 رسائل عشوائية </h2>
+
+<button onclick="randomMsg()">💗 تفضلي يا اميرتي </button>
+<p id="randMsg"></p>
+</div>
+</section>
+
+
+<!-- COUNTDOWN -->
+<section id="countdown" class="section hidden">
+  <div class="card">
+    <h2>⏳ مؤقت اللقاء <h2>
+    <p>20يوم لقائنا: 26/12/26</p>
+    <div id="timer" style="font-size: 24px; margin-top: 15px;"></div>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section id="letter" class="section hidden">
+<div class="card">
+<h2>🔐الرسالة السرية</h2>
+
+<input type="password" id="pass" placeholder="Enter password">
+<br><br>
+<button onclick="openLetter()">فتح</button>
+
+<div id="letterBox"></div>
+</div>
+</section>
+
+</div>
+
+<script>
+
+
+
+/* ---------- FIRST PAGE ---------- */
+let noTexts=["No","متاكده؟","جد الحكي سوار؟؟","😭فكري كثر ","سيرو..","عشان ييزو..","بحبك طيب..","عشان الديناصور الي بالصورة","مين القاسي هسا؟","غاوو","هالة شر","في بي اي"];
+let scale=1;
+
+noBtn.onmouseover=()=>{
+let x=Math.random()* -700;
+let y=Math.random()*200-100;
+noBtn.style.transform=`translate(${x}px,${y}px)`;
+noBtn.innerText=noTexts[Math.floor(Math.random()*noTexts.length)];
+
+}
+
+yesBtn.onclick=()=>{
+startScreen.style.display="none";
+mainSite.classList.remove("hidden");
+}
+/* ---------- NAV ---------- */
+function show(id){
+document.querySelectorAll(".section").forEach(s=>s.classList.add("hidden"));
+document.getElementById(id).classList.remove("hidden");
+}
+
+/* ---------- DAYS COUNTER ---------- */
+function daysSince(date){
+return Math.floor((new Date()-new Date(date))/(1000*60*60*24));
+}
+daysCount.innerText=daysSince("2025-12-26")+" days ❤️";
+
+
+/* ---------- QUIZ ---------- */
+let quiz = [
+  { q: "مين بتحبي اكثر؟", a: ["ييزو","الارانب","سارة"], correct: 0},
+  { q: "شو احلى جزء بيوم يزن؟", a: ["لما يلعب","لما يطلع مع صحابه","يكون مع سيرو"], correct: 2 },
+  { q: " 🐰 مين دلوع العلاقة؟ ", a: ["يزن","سيرو","الارانب"], correct: 1 },
+  { q: "🥺 اذا زعلنا شو الحل؟ ", a: ["نسكت","نطنش (شر) ","نحكي ونضحك مع بعض"], correct: 2 },
+  { q: "اذا صارت غيرة؟", a: ["نزعل","نخبي الشعور","نحكي عنها ونطمن بعض"], correct: 2 },
+  { q: "اذا خجلتي, شو شعوري؟", a: ["وهاها الشريره","بحس بشعور حلو وبحبك اكثر","بتضايق منك"], correct: 1 },
+  { q: "شو بحس يزن لو كنتي متضايقه؟", a: ["مو مهتم","بحس انك عبئ","بحس انه الدنيا غاوو, وبصير بده يسعدك"], correct: 2 },
+  { q: "هل رح نمل من بعض؟", a: ["لا طبعا احنا اصلا روتينيين هههه","نصيب؟","طبعا (شر)"], correct: 0},
+  { q: "اذا حدا فينا انتكس؟", a: ["نهتم ببعض ل نصير احسن بدون احكام","مو مهم وقيمتنا مرتبطه بافعالنا ( شر )","ولا اشي"], correct: 0 },
+  { q: "يزن مين بحب؟", a: ["سوار","النوم","الالعاب"], correct: 0 },
+
+
+];
+
+let qi = 0;
+
+function loadQ() {
+    let q = quiz[qi];
+    qText.innerText = q.q;
+    answers.innerHTML = "";
+    q.a.forEach((t,i) => {
+        let b = document.createElement("button");
+        b.innerText = t;
+        b.onclick = () => answer(i);
+        answers.appendChild(b);
+    });
+}
+
+    function answer(i) {
+    let buttons = answers.querySelectorAll("button");
+
+    if (i === quiz[qi].correct) {
+        
+        buttons[i].classList.add("correct");
+        result.innerText = "💕 شطورره ";
+
+        
+        setTimeout(() => {
+            buttons[i].classList.remove("correct");
+            result.innerText = "";
+            qi++; 
+            if (qi < quiz.length) {
+                loadQ(); 
+            } else {
+                qText.innerText = "💖 خلصتي هيهي ";
+                answers.innerHTML = "";
+				startCelebration();
+            }
+        }, 1000);
+
+    } else {
+       
+        buttons[i].classList.add("wrong");
+        result.innerText = "غلط!! , حاولي كمان مرة";
+
+     
+        setTimeout(() => {
+            buttons[i].classList.remove("wrong");
+            result.innerText = "";
+           
+            loadQ();
+        }, 1000);
+    }
+  }
+ 
+loadQ();
+
+function startCelebration() {
+    const celebration = document.getElementById("celebration");
+    
+    // نعمل 50 عنصر (قلب، أرنب، شوكولا)
+    const emojis = ["💖","🐇","🍫","🌸","✨","🦖"];
+    for(let i=0;i<50;i++){
+        let span = document.createElement("span");
+        span.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+        span.style.position = "absolute";
+        span.style.left = Math.random()*100 + "vw";
+        span.style.top = "-50px";
+        span.style.fontSize = (20 + Math.random()*40) + "px";
+        span.style.opacity = 0.8;
+        span.style.transition = "transform 3s linear, top 3s linear, opacity 3s linear";
+        celebration.appendChild(span);
+
+        // حركة النزول مع دوران وخروج
+        setTimeout(()=>{
+            span.style.top = "100vh";
+            let rotate = Math.random()*360;
+            span.style.transform = `rotate(${rotate}deg)`;
+            span.style.opacity = 0;
+        }, 50);
+
+        // إزالة العنصر بعد انتهاء الحركة
+        setTimeout(()=> celebration.removeChild(span), 3000);
+    }
+}
+
+
+/* ---------- RANDOM MSG ---------- */
+let msgs=[
+"🌙سيرو شخصي المفضل و بحب كل وقتي معك",
+"✨انتي بتخلي ايامي احلى بوجودك",
+"💞انا محظوظ انك الي",
+"Happy Valentine’s Day my love 💌",
+"You’re my forever Valentine 💞",
+"🌹انا ما بدي ورود, انا بس بدي سيرو",
+"✨انتي احلى جزء بالفلنتاين تبعي",
+"💘عيونك حلوة لا تنسي",
+"🎁اني اكون حبيبك هاي احلى هديه",
+"💘سواري كيووووتههه - غاو ",
+"💖فخور فيكي دايما",
+"💘قلبي اختارك - مو بس اليوم , للابد ",
+"💗انتي اجمل بنت بالعالم",
+"🌙انتي بتخلي كل يوم كانه عيد الحب",
+"💖شكرا لانك بتحاولي دايما مهما صار",
+"Forever my Valentine, forever my person 💖",
+"🌸 بحب عيونك ودفء قلبك",
+"🌈انتي قوس القزح في نص عتمتي",
+"🚉في زحمة الركاب، مو شايف غيرك", 
+"🐇 قلبي بنط زي الارنب لما يشوفك",
+"🚉انتي المحطه الي بوصلها قلبي دايما", 
+"🐰بحبك اكثر من حبي للارانب", 
+"🐰انتي ارنبي المفضل",
+"💌كل لحظة معك أحلى من الي قبلها",
+"❄بحبك اكثر من حبي للشتاء",
+"💖شكرا لانك بتسمعيني دايما",
+"💗انا بحبك"
+];
+
+let lastMsgIndex = -1;
+
+let msgsShuffled = [...msgs]; // نسخة للمزيج
+shuffle(msgsShuffled);
+let msgIndex = 0;
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function randomMsg() {
+    let msg = msgsShuffled[msgIndex];
+    msgIndex++;
+    if (msgIndex >= msgsShuffled.length) {
+        shuffle(msgsShuffled); // إعادة الخلط بعد انتهاء جميع الرسائل
+        msgIndex = 0;
+    }
+
+    randMsg.style.transition = "transform 0.4s ease, opacity 0.4s ease";
+    randMsg.style.transform = "scale(0.8)";
+    randMsg.style.opacity = 0;
+
+    setTimeout(() => {
+        randMsg.innerText = msg;
+        randMsg.style.transform = "scale(1)";
+        randMsg.style.opacity = 1;
+    }, 400);
+}
+
+
+
+/* ---------- CountDown ---------- */
+function updateCountdown() {
+    let targetDate = new Date("2026-12-26T00:00:00"); 
+    let now = new Date();
+    let diff = targetDate - now; 
+
+
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    let minutes = Math.floor((diff / (1000 * 60)) % 60);
+    let seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("timer").innerText = 
+        `${days} ثانية ${seconds} دقيقة ${minutes} ساعة ${hours} يوم`;
+}
+
+
+setInterval(updateCountdown, 1000);
+updateCountdown(); 
+
+/* ---------- SECRET LETTER ---------- */
+let text="You are the best thing that ever happened to me.\nI love every detail about you.\nForever yours 💖";
+function openLetter(){
+if(pass.value==="i love you sewar"){
+letterBox.innerText="";
+let i=0;
+let interval=setInterval(()=>{
+letterBox.innerText+=text[i];
+i++;
+if(i>=text.length)clearInterval(interval);
+},40);
+}else alert("سيرو بتحاول..ما اكيتك\n(الباسورد = i love you sewar) ");
+}
+
+</script>
+</body>
+</html>
