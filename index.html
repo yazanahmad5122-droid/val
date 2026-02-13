@@ -484,7 +484,6 @@ loadQ();
 function startCelebration() {
     const celebration = document.getElementById("celebration");
     
-    // نعمل 50 عنصر (قلب، أرنب، شوكولا)
     const emojis = ["💖","🐇","🍫","🌸","✨","🦖"];
     for(let i=0;i<50;i++){
         let span = document.createElement("span");
@@ -497,7 +496,6 @@ function startCelebration() {
         span.style.transition = "transform 3s linear, top 3s linear, opacity 3s linear";
         celebration.appendChild(span);
 
-        // حركة النزول مع دوران وخروج
         setTimeout(()=>{
             span.style.top = "100vh";
             let rotate = Math.random()*360;
@@ -505,7 +503,7 @@ function startCelebration() {
             span.style.opacity = 0;
         }, 50);
 
-        // إزالة العنصر بعد انتهاء الحركة
+
         setTimeout(()=> celebration.removeChild(span), 3000);
     }
 }
@@ -544,7 +542,7 @@ let msgs=[
 
 let lastMsgIndex = -1;
 
-let msgsShuffled = [...msgs]; // نسخة للمزيج
+let msgsShuffled = [...msgs];  
 shuffle(msgsShuffled);
 let msgIndex = 0;
 
@@ -559,7 +557,7 @@ function randomMsg() {
     let msg = msgsShuffled[msgIndex];
     msgIndex++;
     if (msgIndex >= msgsShuffled.length) {
-        shuffle(msgsShuffled); // إعادة الخلط بعد انتهاء جميع الرسائل
+        shuffle(msgsShuffled);  
         msgIndex = 0;
     }
 
@@ -613,3 +611,4 @@ if(i>=text.length)clearInterval(interval);
 </script>
 </body>
 </html>
+
